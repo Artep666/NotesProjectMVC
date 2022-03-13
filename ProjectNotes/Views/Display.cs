@@ -6,9 +6,10 @@ using ProjectNotes.Controllers;
 
 namespace ProjectNotes.Views
 {
-    class Display
+    public class Display
     {
-       NoteController noteControler = new NoteController();
+        NoteController noteControler = new NoteController();
+        UsersController userControler = new UsersController();
 
         public Display()
         {
@@ -25,7 +26,12 @@ namespace ProjectNotes.Views
             Console.WriteLine("3.Update notes");
             Console.WriteLine("4.Fetch note by ID");
             Console.WriteLine("5.Delete note by ID");
-            Console.WriteLine("6.Exit");
+            Console.WriteLine("6.List all users");
+            Console.WriteLine("7.Add new users");
+            Console.WriteLine("8.Update users");
+            Console.WriteLine("9.Fetch user by ID");
+            Console.WriteLine("10.Delete user by ID");
+            Console.WriteLine("11.Exit");
         }
         private void Input()
         {
@@ -42,6 +48,11 @@ namespace ProjectNotes.Views
                     case 3: Update(); break;
                     case 4: Fetch(); break;
                     case 5: Delete(); break;
+                    case 6: ListAllUser(); break;
+                    case 7: AddUsers(); break;
+                    case 8: UpdateUsers(); break;
+                    case 9: FetchUsers(); break;
+                    case 10: DeleteUsers(); break;
                     default: break;
                 }
 
@@ -54,6 +65,15 @@ namespace ProjectNotes.Views
             int id = int.Parse(Console.ReadLine());
 
             noteControler.Delete(id);
+            Console.WriteLine("Done.");
+        }
+
+        private void DeleteUsers()
+        {
+            Console.WriteLine("Enter ID to delete:");
+            int id = int.Parse(Console.ReadLine());
+
+            userControler.DeleteUsers(id);
             Console.WriteLine("Done.");
         }
 
@@ -75,6 +95,23 @@ namespace ProjectNotes.Views
             }
         }
 
+        private void FetchUsers()
+        {
+            Console.WriteLine("Enter ID to fetch:");
+            int id = int.Parse(Console.ReadLine());
+            User user = userControler.GetUserss(id);
+
+            if (user != null)
+            {
+                Console.WriteLine("ID {0}", user.Id);
+                Console.WriteLine("Name {0}", user.Name);
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("User not found!");
+            }
+        }
         private void Update()
         {
             Console.WriteLine("Enter id");
@@ -99,8 +136,32 @@ namespace ProjectNotes.Views
             {
                 Console.WriteLine("Note not found!");
             }
+
         }
 
+        private void UpdateUsers()
+        {
+            Console.WriteLine("Enter id");
+            var id = int.Parse(Console.ReadLine());
+            User user = userControler.GetUserss(id);
+
+            if (user != null)
+            {
+
+                Console.WriteLine("Enter name product");
+                user.Name = Console.ReadLine();
+                Console.WriteLine("Enter description note");
+                user.LastName = Console.ReadLine();
+                userControler.UpdateUser(user);
+            }
+            else
+            {
+                Console.WriteLine("User not found!");
+            }
+
+
+
+        }
         private void Add()
         {
             Note note = new Note();
@@ -116,9 +177,23 @@ namespace ProjectNotes.Views
             note.Date = date;
 
             noteControler.Add(note);
-
         }
+        private void AddUsers() 
+        {
+            User user = new User();
+            Console.WriteLine("Enter name user");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter description note");
+            string lastname = Console.ReadLine();
+            Console.WriteLine("Enter date");
+          
+            user.Name = name;
+            user.LastName = lastname;
+           
 
+            userControler.AddUsers(user);
+        
+        }
         private void ListAll()
         {
             Console.WriteLine(new string(' ', 18) + "ALL NOTES" + new string(' ', 18));
@@ -126,10 +201,20 @@ namespace ProjectNotes.Views
             var notesAll = noteControler.GetAll();
             foreach (var note in notesAll)
             {
-                Console.WriteLine("{0} {1} {2} {3}", note.Id, note.Name, note.Description, note.Date);
+                Console.WriteLine("{0} || {1} || {2} || {3}", note.Id, note.Name, note.Description, note.Date);
+            }
+
+        }
+        private void ListAllUser()
+        {
+            Console.WriteLine(new string(' ', 18) + "ALL USERS" + new string(' ', 18));
+            Console.WriteLine();
+            var usersAll = userControler.GetAllUsers();
+            foreach (var users in usersAll)
+            {
+                Console.WriteLine("{0} || {1} || {2}", users.Id, users.Name, users.LastName);
             }
         }
     }
-
 }
 

@@ -8,13 +8,19 @@ using System.Linq;
 namespace ProjectNotes.Controllers
 {
      public class NoteController
-    {
+     {
         private NoteContext context;
 
         public NoteController()
         {
 
         }
+
+        public NoteController(NoteContext context)
+        {
+            this.context = context;
+        }
+
         public List<Note> GetAll()
         {
             using (context = new NoteContext())
@@ -32,16 +38,15 @@ namespace ProjectNotes.Controllers
             }
 
         }
-        public void Add(Note product)
+        public void Add(Note note)
         {
             using (context = new NoteContext())
             {
-                this.context.Add(product);
+                this.context.Add(note);
                 this.context.SaveChanges();
             }
 
         }
-
         public void Update(Note note)
         {
             using (context = new NoteContext())
@@ -50,10 +55,7 @@ namespace ProjectNotes.Controllers
 
                 context.Entry(n);
                 context.SaveChanges();
-
-
             }
-
         }
         public void Delete(int id)
         {
@@ -66,27 +68,7 @@ namespace ProjectNotes.Controllers
                     context.SaveChanges();
                 }
             }
-
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 

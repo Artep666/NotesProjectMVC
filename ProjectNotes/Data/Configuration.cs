@@ -6,7 +6,7 @@ namespace ProjectNotes.Data
 {
     class Configuration
     {
-        public const string ConnectionString = "Server=.\\SQLEXPRESS; " +
-           "Database=ShopingCentre; Integrated Security=True";
+        public const string ConnectionString = "Server=DESKTOP-2NVMTBC\\SQLEXPRESS; " +
+           "Database=notes; Integrated Security=True";
     }
 }

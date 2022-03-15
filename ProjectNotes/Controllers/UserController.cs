@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ProjectNotes.Data;
 using ProjectNotes.Data.Models;
 using System.Linq;
+using ProjectNotes.Data;
 
 namespace ProjectNotes.Controllers
 {
-   public class UsersController
+   public class UserController
     {
-        private UserContext context;
+        public UserContext context;
 
-        public UsersController()
+        public UserController()
         {
 
         }
-        public List<User> GetAllUsers()
+        internal List<User> GetAllUsers()
         {
             using (context = new UserContext())
             {
@@ -24,15 +24,15 @@ namespace ProjectNotes.Controllers
 
         }
 
-        public User GetUserss(int id)
+        internal User GetUsers(int IdUser)
         {
             using (context = new UserContext())
             {
-                return context.User.FirstOrDefault(x => x.Id == id);
+                return context.User.FirstOrDefault(x => x.IdUser == IdUser);
             }
 
         }
-        public void AddUsers(User user)
+        internal void AddUsers(User user)
         {
             using (context = new UserContext())
             {
@@ -42,11 +42,11 @@ namespace ProjectNotes.Controllers
 
         }
 
-        public void UpdateUser(User user)
+        internal void UpdateUsers(User user)
         {
             using (context = new UserContext())
             {
-                var p = this.context.User.Find(user.Id);
+                var p = this.context.User.Find(user.IdUser);
 
                 context.Entry(p);
                 context.SaveChanges();

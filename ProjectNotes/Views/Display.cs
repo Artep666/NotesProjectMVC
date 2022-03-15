@@ -9,7 +9,7 @@ namespace ProjectNotes.Views
     public class Display
     {
         NoteController noteControler = new NoteController();
-        UsersController userControler = new UsersController();
+        UserController userControler = new UserController();
 
         public Display()
         {
@@ -49,10 +49,10 @@ namespace ProjectNotes.Views
                     case 4: Fetch(); break;
                     case 5: Delete(); break;
                     case 6: ListAllUser(); break;
-                    case 7: AddUsers(); break;
-                    case 8: UpdateUsers(); break;
-                    case 9: FetchUsers(); break;
-                    case 10: DeleteUsers(); break;
+                    case 7: AddUser(); break;
+                    case 8: UpdateUser(); break;
+                    case 9: FetchUser(); break;
+                    case 10: DeleteUser(); break;
                     default: break;
                 }
 
@@ -68,7 +68,7 @@ namespace ProjectNotes.Views
             Console.WriteLine("Done.");
         }
 
-        private void DeleteUsers()
+        private void DeleteUser()
         {
             Console.WriteLine("Enter ID to delete:");
             int id = int.Parse(Console.ReadLine());
@@ -95,16 +95,16 @@ namespace ProjectNotes.Views
             }
         }
 
-        private void FetchUsers()
+        private void FetchUser()
         {
             Console.WriteLine("Enter ID to fetch:");
             int id = int.Parse(Console.ReadLine());
-            User user = userControler.GetUserss(id);
+            User user = userControler.GetUsers(id);
 
             if (user != null)
             {
-                Console.WriteLine("ID {0}", user.Id);
-                Console.WriteLine("Name {0}", user.Name);
+                Console.WriteLine("ID {0}", user.IdUser);
+                Console.WriteLine("Name {0}", user.NameUser);
                 Console.WriteLine();
             }
             else
@@ -121,7 +121,7 @@ namespace ProjectNotes.Views
             if (note != null)
             {
 
-                Console.WriteLine("Enter name product");
+                Console.WriteLine("Enter note name");
                 note.Name = Console.ReadLine();
                 Console.WriteLine("Enter description note");
                 note.Description = Console.ReadLine();
@@ -139,20 +139,20 @@ namespace ProjectNotes.Views
 
         }
 
-        private void UpdateUsers()
+        private void UpdateUser()
         {
             Console.WriteLine("Enter id");
             var id = int.Parse(Console.ReadLine());
-            User user = userControler.GetUserss(id);
+            User user = userControler.GetUsers(id);
 
             if (user != null)
             {
 
-                Console.WriteLine("Enter name product");
-                user.Name = Console.ReadLine();
-                Console.WriteLine("Enter description note");
+                Console.WriteLine("Enter user name");
+                user.NameUser = Console.ReadLine();
+                Console.WriteLine("Enter user lastname");
                 user.LastName = Console.ReadLine();
-                userControler.UpdateUser(user);
+                userControler.UpdateUsers(user);
             }
             else
             {
@@ -178,16 +178,16 @@ namespace ProjectNotes.Views
 
             noteControler.Add(note);
         }
-        private void AddUsers() 
+        private void AddUser() 
         {
             User user = new User();
             Console.WriteLine("Enter name user");
             string name = Console.ReadLine();
-            Console.WriteLine("Enter description note");
+            Console.WriteLine("Enter description user");
             string lastname = Console.ReadLine();
             Console.WriteLine("Enter date");
           
-            user.Name = name;
+            user.NameUser = name;
             user.LastName = lastname;
            
 
@@ -210,9 +210,9 @@ namespace ProjectNotes.Views
             Console.WriteLine(new string(' ', 18) + "ALL USERS" + new string(' ', 18));
             Console.WriteLine();
             var usersAll = userControler.GetAllUsers();
-            foreach (var users in usersAll)
+            foreach (var user in usersAll)
             {
-                Console.WriteLine("{0} || {1} || {2}", users.Id, users.Name, users.LastName);
+                Console.WriteLine("{0} || {1} || {2}", user.IdUser, user.NameUser, user.LastName);
             }
         }
     }

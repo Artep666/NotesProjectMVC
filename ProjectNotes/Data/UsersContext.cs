@@ -18,7 +18,10 @@ namespace ProjectNotes.Data
         }
 
        
-        public DbSet<User> User { get; set; }
+        internal DbSet<User> User { get; set; }
+
+        
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -29,7 +32,7 @@ namespace ProjectNotes.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasKey(x => x.Id).HasName("PK_Test");
+            modelBuilder.Entity<User>().HasKey(x => x.IdUser).HasName("PK_Test");
             base.OnModelCreating(modelBuilder);
         }
     }

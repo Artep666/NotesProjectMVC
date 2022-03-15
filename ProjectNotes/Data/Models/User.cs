@@ -14,10 +14,10 @@ namespace ProjectNotes.Data.Models
         
      
         [Key]
-        public int Id { get; set; }
+        public int IdUser { get; set; }
         [Required]
         [MaxLength(20)]
-        public string Name { get; set; }
+        public string NameUser { get; set; }
         public string LastName { get; set; }
      
     }

@@ -31,7 +31,7 @@ namespace ProjectNotes.Views
             Console.WriteLine("8.Update users");
             Console.WriteLine("9.Fetch user by ID");
             Console.WriteLine("10.Delete user by ID");
-            Console.WriteLine("11.Exit");
+  
         }
         private void Input()
         {

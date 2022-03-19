@@ -16,7 +16,7 @@ namespace ProjectNotes.Data
         {
 
         }
-        public DbSet<Note> Note { get; set; }
+        public virtual DbSet<Note> Note { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

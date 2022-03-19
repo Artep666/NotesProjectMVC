@@ -53,7 +53,7 @@ namespace ProjectNotes.Controllers
             {
                 var n = this.context.Note.Find(note.Id);
 
-                context.Entry(n);
+                context.Entry(n);//tuk ima nqkuv problem
                 context.SaveChanges();
             }
         }

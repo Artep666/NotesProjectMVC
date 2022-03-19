@@ -17,11 +17,11 @@ namespace ProjectNotes.Data
 
         }
 
-       
+       // notes Table
         internal DbSet<User> User { get; set; }
 
         
-
+          // Connection string to Microsoft SQL Server
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

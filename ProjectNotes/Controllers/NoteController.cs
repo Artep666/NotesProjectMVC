@@ -20,7 +20,7 @@ namespace ProjectNotes.Controllers
         {
             this.context = context;
         }
-
+          // List All Recorded in the database notes
         public List<Note> GetAll()
         {
             using (context = new NoteContext())
@@ -29,7 +29,7 @@ namespace ProjectNotes.Controllers
             }
 
         }
-
+        // Fetch a note from the database by Id
         public Note Get(int id)
         {
             using (context = new NoteContext())
@@ -38,6 +38,7 @@ namespace ProjectNotes.Controllers
             }
 
         }
+         // Add a product to the database
         public void Add(Note note)
         {
             using (context = new NoteContext())
@@ -47,6 +48,7 @@ namespace ProjectNotes.Controllers
             }
 
         }
+         // Update a single note in the database by Id.
         public void Update(Note note)
         {
             using (context = new NoteContext())
@@ -57,6 +59,7 @@ namespace ProjectNotes.Controllers
                 context.SaveChanges();
             }
         }
+          // Deleate a note from the database by Id.
         public void Delete(int id)
         {
             using (context = new NoteContext())

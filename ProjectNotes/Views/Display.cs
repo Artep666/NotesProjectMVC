@@ -10,12 +10,12 @@ namespace ProjectNotes.Views
     {
         NoteController noteControler = new NoteController();
         UserController userControler = new UserController();
-
+        //  Constructor
         public Display()
         {
             Input();
         }
-
+        // Menu UI
         public void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -33,6 +33,7 @@ namespace ProjectNotes.Views
             Console.WriteLine("10.Delete user by ID");
   
         }
+        // User Input
         private void Input()
         {
             int closeOperationId = 6;
@@ -58,7 +59,7 @@ namespace ProjectNotes.Views
 
             } while (operation != closeOperationId);
         }
-
+        // UI for Deletion for note
         private void Delete()
         {
             Console.WriteLine("Enter ID to delete:");
@@ -67,7 +68,7 @@ namespace ProjectNotes.Views
             noteControler.Delete(id);
             Console.WriteLine("Done.");
         }
-
+        // UI for Deletionfor user
         private void DeleteUser()
         {
             Console.WriteLine("Enter ID to delete:");
@@ -76,7 +77,7 @@ namespace ProjectNotes.Views
             userControler.DeleteUsers(id);
             Console.WriteLine("Done.");
         }
-
+        // UI for getting a single note record from the database
         private void Fetch()
         {
             Console.WriteLine("Enter ID to fetch:");
@@ -94,7 +95,7 @@ namespace ProjectNotes.Views
                 Console.WriteLine("Note not found!");
             }
         }
-
+        // UI for getting a single user record from the database
         private void FetchUser()
         {
             Console.WriteLine("Enter ID to fetch:");
@@ -112,6 +113,7 @@ namespace ProjectNotes.Views
                 Console.WriteLine("User not found!");
             }
         }
+        // UI dor updating a single note record in the database.
         private void Update()
         {
             Console.WriteLine("Enter id");
@@ -138,7 +140,7 @@ namespace ProjectNotes.Views
             }
 
         }
-
+        // UI dor updating a single user record in the database.
         private void UpdateUser()
         {
             Console.WriteLine("Enter id");
@@ -162,6 +164,7 @@ namespace ProjectNotes.Views
 
 
         }
+        // UI for adding a single note record to the database
         private void Add()
         {
             Note note = new Note();
@@ -178,6 +181,7 @@ namespace ProjectNotes.Views
 
             noteControler.Add(note);
         }
+        // UI for adding a single user record to the database
         private void AddUser() 
         {
             User user = new User();
@@ -194,6 +198,7 @@ namespace ProjectNotes.Views
             userControler.AddUsers(user);
         
         }
+        // UI to list all the notes
         private void ListAll()
         {
             Console.WriteLine(new string(' ', 18) + "ALL NOTES" + new string(' ', 18));
@@ -205,6 +210,7 @@ namespace ProjectNotes.Views
             }
 
         }
+        // UI to list all the users
         private void ListAllUser()
         {
             Console.WriteLine(new string(' ', 18) + "ALL USERS" + new string(' ', 18));

@@ -16,7 +16,7 @@ namespace ProjectNotes.Data
         {
 
         }
-        // Products Table
+        // notes Table
         public virtual DbSet<Note> Note { get; set; }
         // Connection string to Microsoft SQL Server
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

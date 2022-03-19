@@ -15,6 +15,7 @@ namespace ProjectNotes.Controllers
         {
 
         }
+      //List All recorded from database users
         internal List<User> GetAllUsers()
         {
             using (context = new UserContext())
@@ -23,7 +24,7 @@ namespace ProjectNotes.Controllers
             }
 
         }
-
+        //Fetch a user by their Id from database
         internal User GetUsers(int IdUser)
         {
             using (context = new UserContext())
@@ -32,6 +33,7 @@ namespace ProjectNotes.Controllers
             }
 
         }
+              /// Add a user to the database
         internal void AddUsers(User user)
         {
             using (context = new UserContext())
@@ -41,7 +43,7 @@ namespace ProjectNotes.Controllers
             }
 
         }
-
+         // Update a single user in the database by Id.
         internal void UpdateUsers(User user)
         {
             using (context = new UserContext())
@@ -55,6 +57,7 @@ namespace ProjectNotes.Controllers
             }
 
         }
+      // Delete a user from the database by Id
         public void DeleteUsers(int id)
         {
             using (context = new UserContext())

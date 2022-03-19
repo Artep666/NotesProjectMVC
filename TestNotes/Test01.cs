@@ -79,7 +79,7 @@ namespace TestNotes
             var note = service.GetAll();
             //Assert 
 
-            Assert.AreEqual(3, note.Count);
+            Assert.AreEqual(1, note.Count);
 
         }
     }

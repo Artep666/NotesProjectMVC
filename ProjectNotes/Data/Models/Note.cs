@@ -10,7 +10,17 @@ namespace ProjectNotes.Data.Models
         public Note()
         {
 
-        } 
+        }
+
+
+        public Note(string name, string description,int date) 
+        {
+            this.Name = name;
+            this.Description = description;
+            this.Date = date;
+
+        }
+        
         [Key]
         public int Id { get; set; }
         [Required]

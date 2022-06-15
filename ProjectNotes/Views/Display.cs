@@ -6,15 +6,16 @@ using ProjectNotes.Controllers;
 
 namespace ProjectNotes.Views
 {
-    class Display
+    public class Display
     {
-       NoteController noteControler = new NoteController();
-
+        NoteController noteControler = new NoteController();
+        UserController userControler = new UserController();
+        //  Constructor
         public Display()
         {
             Input();
         }
-
+        // Menu UI
         public void ShowMenu()
         {
             Console.WriteLine(new string('-', 40));
@@ -25,8 +26,14 @@ namespace ProjectNotes.Views
             Console.WriteLine("3.Update notes");
             Console.WriteLine("4.Fetch note by ID");
             Console.WriteLine("5.Delete note by ID");
-            Console.WriteLine("6.Exit");
+            Console.WriteLine("6.List all users");
+            Console.WriteLine("7.Add new users");
+            Console.WriteLine("8.Update users");
+            Console.WriteLine("9.Fetch user by ID");
+            Console.WriteLine("10.Delete user by ID");
+  
         }
+        // User Input
         private void Input()
         {
             int closeOperationId = 6;
@@ -42,12 +49,17 @@ namespace ProjectNotes.Views
                     case 3: Update(); break;
                     case 4: Fetch(); break;
                     case 5: Delete(); break;
+                    case 6: ListAllUser(); break;
+                    case 7: AddUser(); break;
+                    case 8: UpdateUser(); break;
+                    case 9: FetchUser(); break;
+                    case 10: DeleteUser(); break;
                     default: break;
                 }
 
             } while (operation != closeOperationId);
         }
-
+        // UI for Deletion for note
         private void Delete()
         {
             Console.WriteLine("Enter ID to delete:");
@@ -56,7 +68,16 @@ namespace ProjectNotes.Views
             noteControler.Delete(id);
             Console.WriteLine("Done.");
         }
+        // UI for Deletionfor user
+        private void DeleteUser()
+        {
+            Console.WriteLine("Enter ID to delete:");
+            int id = int.Parse(Console.ReadLine());
 
+            userControler.DeleteUsers(id);
+            Console.WriteLine("Done.");
+        }
+        // UI for getting a single note record from the database
         private void Fetch()
         {
             Console.WriteLine("Enter ID to fetch:");
@@ -74,7 +95,25 @@ namespace ProjectNotes.Views
                 Console.WriteLine("Note not found!");
             }
         }
+        // UI for getting a single user record from the database
+        private void FetchUser()
+        {
+            Console.WriteLine("Enter ID to fetch:");
+            int id = int.Parse(Console.ReadLine());
+            User user = userControler.GetUsers(id);
 
+            if (user != null)
+            {
+                Console.WriteLine("ID {0}", user.IdUser);
+                Console.WriteLine("Name {0}", user.NameUser);
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("User not found!");
+            }
+        }
+        // UI dor updating a single note record in the database.
         private void Update()
         {
             Console.WriteLine("Enter id");
@@ -84,7 +123,7 @@ namespace ProjectNotes.Views
             if (note != null)
             {
 
-                Console.WriteLine("Enter name product");
+                Console.WriteLine("Enter note name");
                 note.Name = Console.ReadLine();
                 Console.WriteLine("Enter description note");
                 note.Description = Console.ReadLine();
@@ -99,8 +138,33 @@ namespace ProjectNotes.Views
             {
                 Console.WriteLine("Note not found!");
             }
-        }
 
+        }
+        // UI dor updating a single user record in the database.
+        private void UpdateUser()
+        {
+            Console.WriteLine("Enter id");
+            var id = int.Parse(Console.ReadLine());
+            User user = userControler.GetUsers(id);
+
+            if (user != null)
+            {
+
+                Console.WriteLine("Enter user name");
+                user.NameUser = Console.ReadLine();
+                Console.WriteLine("Enter user lastname");
+                user.LastName = Console.ReadLine();
+                userControler.UpdateUsers(user);
+            }
+            else
+            {
+                Console.WriteLine("User not found!");
+            }
+
+
+
+        }
+        // UI for adding a single note record to the database
         private void Add()
         {
             Note note = new Note();
@@ -116,9 +180,25 @@ namespace ProjectNotes.Views
             note.Date = date;
 
             noteControler.Add(note);
-
         }
+        // UI for adding a single user record to the database
+        private void AddUser() 
+        {
+            User user = new User();
+            Console.WriteLine("Enter name user");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter description user");
+            string lastname = Console.ReadLine();
+            Console.WriteLine("Enter date");
+          
+            user.NameUser = name;
+            user.LastName = lastname;
+           
 
+            userControler.AddUsers(user);
+        
+        }
+        // UI to list all the notes
         private void ListAll()
         {
             Console.WriteLine(new string(' ', 18) + "ALL NOTES" + new string(' ', 18));
@@ -126,10 +206,21 @@ namespace ProjectNotes.Views
             var notesAll = noteControler.GetAll();
             foreach (var note in notesAll)
             {
-                Console.WriteLine("{0} {1} {2} {3}", note.Id, note.Name, note.Description, note.Date);
+                Console.WriteLine("{0} || {1} || {2} || {3}", note.Id, note.Name, note.Description, note.Date);
+            }
+
+        }
+        // UI to list all the users
+        private void ListAllUser()
+        {
+            Console.WriteLine(new string(' ', 18) + "ALL USERS" + new string(' ', 18));
+            Console.WriteLine();
+            var usersAll = userControler.GetAllUsers();
+            foreach (var user in usersAll)
+            {
+                Console.WriteLine("{0} || {1} || {2}", user.IdUser, user.NameUser, user.LastName);
             }
         }
     }
-
 }
 

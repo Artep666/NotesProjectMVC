@@ -6,17 +6,22 @@ using System.Text;
 
 namespace ProjectNotes.Data
 {
-     public class NoteContext:DbContext
+     public class UserContext:DbContext
     {
-        public NoteContext()
+        public UserContext()
         {
 
         }
-        public NoteContext(DbContextOptions options) : base(options)
+        public UserContext(DbContextOptions options) : base(options)
         {
 
         }
-        public DbSet<Note> Note { get; set; }
+
+       // notes Table
+        internal DbSet<User> User { get; set; }
+
+        
+          // Connection string to Microsoft SQL Server
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -27,7 +32,7 @@ namespace ProjectNotes.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Note>().HasKey(x => x.Id).HasName("PK_Test");
+            modelBuilder.Entity<User>().HasKey(x => x.IdUser).HasName("PK_Test");
             base.OnModelCreating(modelBuilder);
         }
     }
